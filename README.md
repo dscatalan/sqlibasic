@@ -18,8 +18,8 @@ Versions are given for record keeping. They are not necessarily required unless 
 > Note: Everything will be done in a Linux Virtual Machine. 
 - [Virtual Box 7](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview)
     (*direct download link: [`ubuntu-22.04.2-desktop-amd64.iso`](https://ubuntu.com/download/desktop/thank-you?version=22.04.2&architecture=amd64)*)
-- [MariaDB](/notes.txt)
-- Node (*version `18.14.0`*)
-- NPM (*version `9.3.1`*)
+- [MariaDB](/notes.txt) (*version `10.6.12-MariaDB-0ubuntu0.22.04.1`*)
+- Node (*version `12.22.9`*)
+- NPM (*version `8.5.1`*)
 
 
