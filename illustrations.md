@@ -116,6 +116,14 @@ SELECT * from appusers;
 ![image-20230522065657598](/home/student/sqlibasic/illustrations.assets/image-20230522065657598.png)
 
 ## An explanation and screenshots explaining how the code meets each requirement.
+### Step 1. Add a "session" attribute to the appusers table.
+
+Please look at step 11 in [notes](/notes.txt)
+
+This is what `appusers` should look like:
+
+![image-20230522071013859](illustrations.assets/image-20230522071013859.png)
+
 
 ### Step 7. Add a self-signed HTTPs certificate.
 
