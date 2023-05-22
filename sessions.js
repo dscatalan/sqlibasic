@@ -295,5 +295,5 @@ let credentials = {key: privateKey, cert: certificate};
 
 // Wrap the express communications inside https
 let httpsServer = https.createServer(credentials, app);
-httpsServer.listen(3000);
+httpsServer.listen(3000, () => console.log('Visit https://localhost:3000/'));
 
