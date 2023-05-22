@@ -47,8 +47,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessions({
 	cookieName: 'session',
 	secret: 'random_string_goes_here',
-	duration: 30 * 60 * 1000,
-	activeDuration: 5 * 60 * 1000,
+	duration: 10*60*1000,
+	activeDuration: 10*60*1000,
 }));
 
 
