@@ -75,6 +75,9 @@ app.use(sessions({
 	secret: 'random_string_goes_here',
 	duration: 10 * 60 * 1000,
 	activeDuration: 10 * 60 * 1000,
+	cookie: {
+		httpOnly: true // when true, cookie is not accessible from javascript
+	}
 }));
 
 // The default page
