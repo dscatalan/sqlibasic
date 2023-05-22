@@ -1,0 +1,27 @@
+{
+  "name": "sqlibasic",
+  "version": "1.0.0",
+  "description": "# Get Started",
+  "main": "sessions.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "client-sessions": "^0.8.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mysql": "^2.17.1",
+    "uuid": "^9.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dscatalan/sqlibasic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dscatalan/sqlibasic/issues"
+  },
+  "homepage": "https://github.com/dscatalan/sqlibasic#readme"
+}

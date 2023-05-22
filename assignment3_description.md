@@ -2,9 +2,9 @@
 
 #### In this assignment you will add some simple extensions to the app that will implement defense-in-depth measures for protecting against SQL injections and implementing proper authentication. Please extend the app as follows:
 
-- [ ] #### 1. Add a "session" attribute to the appusers table.
+- [x] #### 1. Add a "session" attribute to the appusers table.
 
-- [ ] #### 2. When the user logs in, store the session ID in the "session" attribute of the user's record. **Please do not make any other changes to the database.**
+- [x] #### 2. When the user logs in, store the session ID in the "session" attribute of the user's record. **Please do not make any other changes to the database.**
 
 - [ ] #### 3. When the user navigates to the site, the back-end (1) checks if the user is logged in and has an active session; and (2) if so, the back-end looks up the user record based on the session ID and shows a simple welcome page showing the user's name and the contents of the "info" column.  Otherwise, the user is directed to a login/create account page.
 
