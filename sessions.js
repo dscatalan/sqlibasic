@@ -1,7 +1,7 @@
 'use strict'
 
 // Import express
-const  express = require('express');
+const express = require('express');
 
 // Import client sessions
 const sessions = require('client-sessions');
@@ -22,7 +22,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // Connect to the database
-const  mysqlConn = mysql.createConnection({
+const mysqlConn = mysql.createConnection({
 	host: "localhost",
 	user: "appaccount",
 	password: "apppass",
@@ -44,21 +44,37 @@ app.use(sessions({
 	activeDuration: 5 * 60 * 1000,
 }));
 
+
 // The default page
 // @param req - the request
 // @param res - the response
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
 
 	// Is this user logged in?
-	if(req.session.username) 
-	{
+	if (req.session.id) {
 		// Yes!
 		res.redirect('/dashboard');
 	}
-	else 
-	{
+	else {
 		// No!
 		res.render('loginpage');
+	}
+
+});
+
+// The create account page
+// @param req - the request
+// @param res - the response
+app.get("/create-account", function (req, res) {
+
+	// Is this user logged in?
+	if (req.session.id) {
+		// Yes!
+		res.redirect('/dashboard');
+	}
+	else {
+		// No!
+		res.render('create-account-page');
 	}
 
 });
@@ -66,16 +82,35 @@ app.get("/", function(req, res){
 // The login page
 // @param req - the request
 // @param res - the response
-app.get('/dashboard', function(req, res){
+app.get('/dashboard', function (req, res) {
 
 	// Is this user logged in? Then show the dashboard
-	if(req.session.username)
-	{
-		res.render('dashboard', {username: req.session.username});
+	if (req.session.id) {
+		let username;
+		let info;
+
+		console.log("within /dashboard endpoint session id is: ", req.session.id);
+
+		let query = "USE users; SELECT username, info from appusers where session='" + req.session.id + "' ";
+		console.log(query);
+		mysqlConn.query(query, function (err, qResult) {
+
+			if (err) throw err;
+
+			console.log("what is")
+			console.log(qResult[1]);
+
+			for (let account of qResult[1]) {
+				username = account['username']
+				info = account['info'];
+				res.render('dashboard', { username: username, info: info });
+			};
+		});
+
+
 	}
 	//Not logged in! Redirect to the mainpage
-	else 
-	{
+	else {
 		res.redirect('/');
 	}
 
@@ -84,7 +119,7 @@ app.get('/dashboard', function(req, res){
 // The login script
 // @param req - the request
 // @param res - the response
-app.post('/login', function(req, res){
+app.post('/login', function (req, res) {
 
 	// Get the username and password data from the form
 	let userName = req.body.username;
@@ -97,9 +132,9 @@ app.post('/login', function(req, res){
 
 
 	// Query the DB for the user
-	mysqlConn.query(query, function(err, qResult){
+	mysqlConn.query(query, function (err, qResult) {
 
-		if(err) throw err;
+		if (err) throw err;
 
 		console.log(qResult[1]);
 
@@ -107,11 +142,9 @@ app.post('/login', function(req, res){
 		let match = false;
 
 		// Go through the results of the second query
-		for(let account of qResult[1])
-		{
+		for (let account of qResult[1]) {
 
-			if(account['username'] == userName && account['password'] == password)
-			{
+			if (account['username'] == userName && account['password'] == password) {
 				console.log("Match!");
 
 				// We have a match!
@@ -124,22 +157,26 @@ app.post('/login', function(req, res){
 
 		// Login succeeded! Set the session variable and send the user
 		// to the dashboard
-		if(match)
-		{
+		if (match) {
 
-			// create session id and store in db
-			let query = "USE users; UPDATE appusers SET session='" + uuidv4() + "'  WHERE username='" + userName + "' ";
-			
-			mysqlConn.query(query, function(err, res){
+			// create random id and store in cookie
+			req.session.id = uuidv4()
+			console.log("req.session.id: ", req.session.id)
+
+			//store in db
+			let query = "USE users; UPDATE appusers SET session='" + req.session.id + "'  WHERE username='" + userName + "' ";
+			console.log(query);
+
+			mysqlConn.query(query, function (err, res) {
 				if (err) throw err;
 
 				console.log(res[1]['message'])
 			})
 
+
 			res.redirect('/dashboard');
 		}
-		else
-		{
+		else {
 			// If no matches have been found, we are done
 			res.send("<b>Wrong</b>");
 		}
@@ -168,7 +205,18 @@ app.post('/login', function(req, res){
 // The logout function
 // @param req - the request
 // @param res - the response
-app.get('/logout', function(req, res){
+app.get('/logout', function (req, res) {
+
+	// clear session id from db
+	let message = "not logged in"
+	let query = "USE users; UPDATE appusers SET session='" + message + "'  WHERE session='" + req.session.id + "' ";
+	console.log(query);
+
+	mysqlConn.query(query, function (err, res) {
+		if (err) throw err;
+
+		console.log(res[1]['message'])
+	})
 
 	// Kill the session
 	req.session.reset();

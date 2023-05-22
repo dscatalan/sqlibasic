@@ -6,9 +6,9 @@
 
 - [x] #### 2. When the user logs in, store the session ID in the "session" attribute of the user's record. **Please do not make any other changes to the database.**
 
-- [ ] #### 3. When the user navigates to the site, the back-end (1) checks if the user is logged in and has an active session; and (2) if so, the back-end looks up the user record based on the session ID and shows a simple welcome page showing the user's name and the contents of the "info" column.  Otherwise, the user is directed to a login/create account page.
+- [x] #### 3. When the user navigates to the site, the back-end (1) checks if the user is logged in and has an active session; and (2) if so, the back-end looks up the user record based on the session ID and shows a simple welcome page showing the user's name and the contents of the "info" column.  Otherwise, the user is directed to a login/create account page.
 
-- [ ] #### 4. When the user logs out, the session ID is deleted from the user's record (or is replaced with some place holder value such as "not logged in".
+- [x] #### 4. When the user logs out, the session ID is deleted from the user's record (or is replaced with some place holder value such as "not logged in".
 
 - [ ] #### 5. Add an option to allow users to register (i.e., add their user name and password)
 
