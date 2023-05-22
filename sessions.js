@@ -23,13 +23,33 @@ const saltRounds = 10;
 const { passwordStrength } = require("check-password-strength");
 
 // An https wrapper 
-const https = require('https');      
+const https = require('https');
 
 // For reading files
-const fs = require('fs'); 	             
+const fs = require('fs');
+
+// Import helmet-csp
+const contentSecurityPolicy = require('helmet-csp');
 
 // Instantiate an express app
 const app = express();
+
+app.use(express.static(__dirname + '/public'));
+
+// csp middleware
+app.use(
+	contentSecurityPolicy({
+		useDefaults: true,
+		directives: {
+			defaultSrc: ["'self'"],
+			scriptSrc: ["'self'"],
+			imgSrc: ["'self'", 'data:', 'http.cat'],
+			objectSrc: ["'none'"],
+			upgradeInsecureRequests: [],
+		},
+		reportOnly: false,
+	})
+);
 
 // Set the view engine
 app.set('view engine', 'ejs');
@@ -53,10 +73,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessions({
 	cookieName: 'session',
 	secret: 'random_string_goes_here',
-	duration: 10*60*1000,
-	activeDuration: 10*60*1000,
+	duration: 10 * 60 * 1000,
+	activeDuration: 10 * 60 * 1000,
 }));
-
 
 // The default page
 // @param req - the request
@@ -116,7 +135,11 @@ app.post("/create-account", function (req, res) {
 	// Get the username and password data from the form
 	let userName = req.body.username;
 	let password = req.body.password;
-	let initialInfo = ""
+
+	console.log("req.body.information: ", req.body.information);
+	
+	let initialInfo = req.body.information;
+
 	let initialSession = "not logged in"
 
 	bcrypt.hash(password, saltRounds, function (err, hash) {
@@ -289,9 +312,9 @@ app.get('/logout', function (req, res) {
 });
 
 // Key data for certificates
-let privateKey  = fs.readFileSync('./mykey.key', 'utf8');
+let privateKey = fs.readFileSync('./mykey.key', 'utf8');
 let certificate = fs.readFileSync('./mycert.crt', 'utf8');
-let credentials = {key: privateKey, cert: certificate};
+let credentials = { key: privateKey, cert: certificate };
 
 // Wrap the express communications inside https
 let httpsServer = https.createServer(credentials, app);

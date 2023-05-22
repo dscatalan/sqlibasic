@@ -30,7 +30,7 @@
     
 12. Insert a user into the table:
 
-    INSERT INTO appusers VALUES('mikhail', 'passw0rd', 'Where are the cats?', 'not logged in');
+    INSERT INTO appusers VALUES('mikhail', '$2b$10$MPwhYcT.NTOy6z0C0CrP4eNsQkd4GczQTm7GTdqGQRi9CT7nb5cRC', 'Where are the cats?', 'not logged in');
 
 13. Create a user account (appaccount) that will be used by our node.js application to 
     access the "users" database and give it priveleges to access all tables in the "users" 
@@ -58,28 +58,27 @@
 
 Output:
 
-+----------+----------+---------------------+---------------+
-| username | password | info                | session       |
-+----------+----------+---------------------+---------------+
-| mikhail  | passw0rd | Where are the cats? | not logged in |
-+----------+----------+---------------------+---------------+
++----------+--------------------------------------------------------------+---------------------+---------------+
+| username | password                                                     | info                | session       |
++----------+--------------------------------------------------------------+---------------------+---------------+
+| mikhail  | $2b$10$MPwhYcT.NTOy6z0C0CrP4eNsQkd4GczQTm7GTdqGQRi9CT7nb5cRC | Where are the cats? | not logged in |
++----------+--------------------------------------------------------------+---------------------+---------------+
 
 19. Try inserting values into the table:
 
-    INSERT INTO appusers VALUES ('testuser', 'testpass', 'Hellllo???', 'not logged in');
+    INSERT INTO appusers VALUES ('testuser', '$2b$10$DPYpj2zzZk7WpQ18Z6jmZOeva5o5zcVExMtK4nbRLnxhO9cqCrdmq', 'Hellllo???', 'not logged in');
 
 20. Display the database users to see if the record has been inserted. 
 
 MariaDB [users]> select * from appusers;
 
-+----------+----------+---------------------+---------------+
-| username | password | info                | session       |
-+----------+----------+---------------------+---------------+
-| mikhail  | passw0rd | Where are the cats? | not logged in |
-| testuser | testpass | Hellllo???          | not logged in |
-+----------+----------+---------------------+---------------+
++----------+--------------------------------------------------------------+---------------------+---------------+
+| username | password                                                     | info                | session       |
++----------+--------------------------------------------------------------+---------------------+---------------+
+| mikhail  | $2b$10$MPwhYcT.NTOy6z0C0CrP4eNsQkd4GczQTm7GTdqGQRi9CT7nb5cRC | Where are the cats? | not logged in |
+| testuser | $2b$10$DPYpj2zzZk7WpQ18Z6jmZOeva5o5zcVExMtK4nbRLnxhO9cqCrdmq | Hellllo???          | not logged in |
++----------+--------------------------------------------------------------+---------------------+---------------+
 
-
-
-
-
+Here are the test plain text passwords to be able to login:
+mikhail: `4pas$w0rDt`
+testuser: `te*stpAss2`
