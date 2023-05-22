@@ -1,20 +1,12 @@
 # CPSC 455 - Assignment 3: Defense in Depth, SQL Injections, Authentication, and Sensitive Data
 
-# Get Started 
-
-Optionally, create a linux based virtual machine to work in. The virtual machine will make it easier to work with MariaDB server.  
-
-Clone the Project
-```
-git clone https://github.com/dscatalan/sqlibasic.git
-cd sqlibasic/
-```
-
 # Information
 
-1. Daisy Catalan
-
-2. Read [notes](/notes.txt) for instructions on creating a database and running the program.
+1. [Working code [ZIP]](https://github.com/dscatalan/sqlibasic/archive/refs/heads/main.zip) 
+2. Member(s) and database instructions
+    - Daisy Catalan 
+    - Read [notes](/notes.txt) for instructions on creating the database 
+4. View [illustrations](/illustrations.md) for app information (screenshots, etc...).  
 
 ## Tech Stack
 Versions are given for record keeping. They are not necessarily required unless stated otherwise.
@@ -26,4 +18,21 @@ Versions are given for record keeping. They are not necessarily required unless 
 - Node (*version `12.22.9`*)
 - NPM (*version `8.5.1`*)
 
+# Get Started 
+
+Optionally, create a linux based virtual machine to work in. The virtual machine will make it easier to work with MariaDB server.  
+
+Clone the Project
+```
+git clone https://github.com/dscatalan/sqlibasic.git
+cd sqlibasic/
+```
+
+*Make sure the database has been set up before proceeding.*
+
+Start The Project
+
+```
+node sessions.js
+```
 
