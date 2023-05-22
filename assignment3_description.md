@@ -16,7 +16,7 @@
 
 - [x] #### 6. Use node.js's [password strength checker package](https://www.npmjs.com/package/check-password-strength) to check whether the user's password is strong according to OWASP 10 requirements covered in class.
 
-- [ ] #### 7. Add a self-signed HTTPs certificate.
+- [x] #### 7. Add a self-signed HTTPs certificate.
 
 - [x] #### 8. Configure the [client-sessions](https://www.npmjs.com/package/client-sessions) package to have the session expire after 10 mins inactivity (which the program already uses).
 

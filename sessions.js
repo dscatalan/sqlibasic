@@ -22,6 +22,12 @@ const saltRounds = 10;
 // Import check-password-strength
 const { passwordStrength } = require("check-password-strength");
 
+// An https wrapper 
+const https = require('https');      
+
+// For reading files
+const fs = require('fs'); 	             
+
 // Instantiate an express app
 const app = express();
 
@@ -282,6 +288,12 @@ app.get('/logout', function (req, res) {
 	res.redirect('/');
 });
 
-app.listen(3000);
+// Key data for certificates
+let privateKey  = fs.readFileSync('./mykey.key', 'utf8');
+let certificate = fs.readFileSync('./mycert.crt', 'utf8');
+let credentials = {key: privateKey, cert: certificate};
 
+// Wrap the express communications inside https
+let httpsServer = https.createServer(credentials, app);
+httpsServer.listen(3000);
 
