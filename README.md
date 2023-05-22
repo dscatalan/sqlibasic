@@ -12,6 +12,10 @@ cd sqlibasic/
 
 # Information
 
+1. Daisy Catalan
+
+2. Read [notes](/notes.txt) for instructions on creating a database and running the program.
+
 ## Tech Stack
 Versions are given for record keeping. They are not necessarily required unless stated otherwise.
 
