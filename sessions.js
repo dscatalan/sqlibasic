@@ -149,11 +149,11 @@ app.post("/create-account", function (req, res) {
 		// Store hash in your password DB
 
 		// Construct the query
-		let query = "USE users; INSERT INTO appusers (username, password, info, session) VALUES ('" + userName + "', '" + hash + "', '" + initialInfo + "', '" + initialSession + "') ";
-		console.log(query);
+		let query = "USE users; INSERT INTO appusers (`username`, `password`, `info`, `session`) VALUES (?, ?, ?, ?)";
+		
 
-		mysqlConn.query(query, function (err, qResult) {
-
+		mysqlConn.query(query, [userName, hash, initialInfo, initialSession], function (err, qResult) {
+console.log(query);
 			if (err) throw err;
 
 			console.log(qResult[1]);
@@ -178,9 +178,9 @@ app.get('/dashboard', function (req, res) {
 
 		console.log("within /dashboard endpoint session id is: ", req.session.id);
 
-		let query = "USE users; SELECT username, info from appusers where session='" + req.session.id + "' ";
+		let query = "USE users; SELECT username, info from appusers where `session`=?";
 		console.log(query);
-		mysqlConn.query(query, function (err, qResult) {
+		mysqlConn.query(query, [req.session.id],function (err, qResult) {
 
 			if (err) throw err;
 
@@ -217,12 +217,12 @@ app.post('/login', function (req, res) {
 	console.log("passHashComparison: ", passHashComparison);
 
 	// Construct the query
-	let query = "USE users; SELECT username from appusers where username='" + userName + "' ";
+	let query = "USE users; SELECT username from appusers where `username`=?";
 	console.log(query);
 
 
 	// Query the DB for the user
-	mysqlConn.query(query, function (err, qResult) {
+	mysqlConn.query(query, [userName], function (err, qResult) {
 
 		if (err) throw err;
 
@@ -254,10 +254,10 @@ app.post('/login', function (req, res) {
 			console.log("req.session.id: ", req.session.id)
 
 			//store in db
-			let query = "USE users; UPDATE appusers SET session='" + req.session.id + "'  WHERE username='" + userName + "' ";
+			let query = "USE users; UPDATE appusers SET `session`=?  WHERE `username`=?";
 			console.log(query);
 
-			mysqlConn.query(query, function (err, res) {
+			mysqlConn.query(query, [req.session.id, userName],function (err, res) {
 				if (err) throw err;
 
 				console.log(res[1]['message'])
@@ -299,10 +299,10 @@ app.get('/logout', function (req, res) {
 
 	// clear session id from db
 	let message = "not logged in"
-	let query = "USE users; UPDATE appusers SET session='" + message + "'  WHERE session='" + req.session.id + "' ";
+	let query = "USE users; UPDATE appusers SET `session`=?  WHERE `session`=? ";
 	console.log(query);
 
-	mysqlConn.query(query, function (err, res) {
+	mysqlConn.query(query, [message, req.session.id],function (err, res) {
 		if (err) throw err;
 
 		console.log(res[1]['message'])
