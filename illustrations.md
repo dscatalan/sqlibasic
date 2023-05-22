@@ -154,6 +154,20 @@ The most important piece of code is within:
 		}
 ```
 
+
+
+Console messages when running  `sessions.js`:
+
+![image-20230522092730281](illustrations.assets/image-20230522092730281.png)
+
+
+
+Database before and after login submission:
+
+![image-20230522092920384](illustrations.assets/image-20230522092920384.png)
+
+
+
 ### Step 4. When the user logs out, the session ID is deleted from the user's record (or is replaced with some place holder value such as "not logged in".
 
 Please look at `/logout` GET endpoint for code in `sessions.js`.
@@ -174,6 +188,18 @@ The most important piece of code is within:
 ```
 
 
+
+Press `Logout`
+
+![image-20230522093122739](illustrations.assets/image-20230522093122739.png)
+
+Console messages when running  `sessions.js`:
+
+![image-20230522093146647](illustrations.assets/image-20230522093146647.png)
+
+Database before and after Logout submission:
+
+![image-20230522093225110](illustrations.assets/image-20230522093225110.png)
 
 ### Step 5. Add an option to allow users to register (i.e., add their user name and password)
 
@@ -281,6 +307,57 @@ Here is `successpage.ejs`. This page will render if account creations is success
 </html>
 ```
 
+
+
+Press `Create account.`
+
+![image-20230522093453794](illustrations.assets/image-20230522093453794.png)
+
+
+
+Create an account using info:
+
+```
+Username: mary
+Password: Fp4$1ApaG3
+Information: I am showing the creation of mary's account!
+```
+
+![image-20230522093726490](illustrations.assets/image-20230522093726490.png)
+
+Press `Register`
+
+![image-20230522093752622](illustrations.assets/image-20230522093752622.png)
+
+Console messages when running  `sessions.js`:
+
+![image-20230522094053687](illustrations.assets/image-20230522094053687.png)
+
+
+
+Database before and after `Register` submission:
+
+![image-20230522094144734](illustrations.assets/image-20230522094144734.png)
+
+
+
+Press `Login` to test successful account creation:
+
+Enter Credentials:
+
+```
+Username: mary
+Password: Fp4$1ApaG3
+```
+
+![image-20230522094254987](illustrations.assets/image-20230522094254987.png)
+
+Press `Submit`
+
+![image-20230522094313230](illustrations.assets/image-20230522094313230.png)
+
+
+
 ### Step 5. Use the node.js's [bcrypt](https://www.npmjs.com/package/bcrypt) package to securely store and verify passwords (in the SQL dabatabse). You can also find a very simple sample [file here](https://csufullerton.instructure.com/courses/3356207/files/234757175?wrap=1).
 
 see the previous code snipping for storing passwords using bcrypt.
@@ -294,6 +371,10 @@ console.log("passHashComparison: ", passHashComparison);
 
 // use username comparison and passHashComparison to evaluate if match is found
 ```
+
+Console messages when running  `sessions.js`:
+
+![image-20230522094703459](illustrations.assets/image-20230522094703459.png)
 
 
 
@@ -401,6 +482,8 @@ I did list `http.cat` , so the cat image should work in the `successpage.ejs` pa
 
 In Step 8, `httpOnly` is set to true when setting up the `client-sessions` cookie.
 
+![image-20230522094946564](illustrations.assets/image-20230522094946564.png)
+
 
 
 ### Step 10. Make sure that the webapp has a privilege-restricted database account.
@@ -419,3 +502,8 @@ const mysqlConn = mysql.createConnection({
 
 });
 ```
+
+Notice the difference when using `root` vs `appaccount`
+
+![image-20230522095441189](illustrations.assets/image-20230522095441189.png)
+
