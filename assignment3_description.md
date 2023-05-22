@@ -18,7 +18,7 @@
 
 - [ ] #### 7. Add a self-signed HTTPs certificate.
 
-- [ ] #### 8. Configure the [client-sessions](https://www.npmjs.com/package/client-sessions) package to have the session expire after 10 mins inactivity (which the program already uses).
+- [x] #### 8. Configure the [client-sessions](https://www.npmjs.com/package/client-sessions) package to have the session expire after 10 mins inactivity (which the program already uses).
 
 - [ ] #### 9. Add CSP protection and make session cookies HTTPOnly to ensure some protection against XSS.
 
