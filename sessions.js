@@ -73,8 +73,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessions({
 	cookieName: 'session',
 	secret: 'random_string_goes_here',
-	duration: 10 * 60 * 1000,
-	activeDuration: 10 * 60 * 1000,
+	duration: 10 * 60 * 1000, // 10 mins
+	activeDuration: 10 * 60 * 1000, // 10 mins
 	cookie: {
 		httpOnly: true // when true, cookie is not accessible from javascript
 	}
@@ -140,7 +140,7 @@ app.post("/create-account", function (req, res) {
 	let password = req.body.password;
 
 	console.log("req.body.information: ", req.body.information);
-	
+
 	let initialInfo = req.body.information;
 
 	let initialSession = "not logged in"
@@ -150,10 +150,10 @@ app.post("/create-account", function (req, res) {
 
 		// Construct the query
 		let query = "USE users; INSERT INTO appusers (`username`, `password`, `info`, `session`) VALUES (?, ?, ?, ?)";
-		
+
 
 		mysqlConn.query(query, [userName, hash, initialInfo, initialSession], function (err, qResult) {
-console.log(query);
+			console.log(query);
 			if (err) throw err;
 
 			console.log(qResult[1]);
@@ -180,7 +180,7 @@ app.get('/dashboard', function (req, res) {
 
 		let query = "USE users; SELECT username, info from appusers where `session`=?";
 		console.log(query);
-		mysqlConn.query(query, [req.session.id],function (err, qResult) {
+		mysqlConn.query(query, [req.session.id], function (err, qResult) {
 
 			if (err) throw err;
 
@@ -257,7 +257,7 @@ app.post('/login', function (req, res) {
 			let query = "USE users; UPDATE appusers SET `session`=?  WHERE `username`=?";
 			console.log(query);
 
-			mysqlConn.query(query, [req.session.id, userName],function (err, res) {
+			mysqlConn.query(query, [req.session.id, userName], function (err, res) {
 				if (err) throw err;
 
 				console.log(res[1]['message'])
@@ -302,7 +302,7 @@ app.get('/logout', function (req, res) {
 	let query = "USE users; UPDATE appusers SET `session`=?  WHERE `session`=? ";
 	console.log(query);
 
-	mysqlConn.query(query, [message, req.session.id],function (err, res) {
+	mysqlConn.query(query, [message, req.session.id], function (err, res) {
 		if (err) throw err;
 
 		console.log(res[1]['message'])
