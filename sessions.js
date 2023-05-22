@@ -15,6 +15,10 @@ const mysql = require('mysql');
 // Import uuid
 const { v4: uuidv4 } = require('uuid');
 
+// Import bcrypt
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 // Instantiate an express app
 const app = express();
 
@@ -90,19 +94,23 @@ app.post("/create-account", function (req, res) {
 	let initialInfo = ""
 	let initialSession = "not logged in"
 
-	// Construct the query
-	let query = "USE users; INSERT INTO appusers (username, password, info, session) VALUES ('" + userName + "', '" + password + "', '" + initialInfo + "', '" + initialSession + "') ";
-	console.log(query);
+	bcrypt.hash(password, saltRounds, function (err, hash) {
+		// Store hash in your password DB
 
-	mysqlConn.query(query, function (err, qResult) {
+		// Construct the query
+		let query = "USE users; INSERT INTO appusers (username, password, info, session) VALUES ('" + userName + "', '" + hash + "', '" + initialInfo + "', '" + initialSession + "') ";
+		console.log(query);
 
-		if (err) throw err;
+		mysqlConn.query(query, function (err, qResult) {
 
-		console.log(qResult[1]);
+			if (err) throw err;
 
-		res.redirect('/successpage');
+			console.log(qResult[1]);
 
-	});
+			res.redirect('/successpage');
+
+		});
+	})
 
 
 });

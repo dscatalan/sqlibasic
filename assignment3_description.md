@@ -22,7 +22,7 @@
 
 - [ ] #### 9. Add CSP protection and make session cookies HTTPOnly to ensure some protection against XSS.
 
-- [ ] #### 10. Make sure that the webapp has a privilege-restricted database account.
+- [x] #### 10. Make sure that the webapp has a privilege-restricted database account.
 
 #### What to submit:
 
