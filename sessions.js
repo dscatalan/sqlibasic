@@ -19,6 +19,9 @@ const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+// Import check-password-strength
+const { passwordStrength } = require("check-password-strength");
+
 // Instantiate an express app
 const app = express();
 
@@ -66,6 +69,7 @@ app.get("/", function (req, res) {
 
 });
 
+
 // The create account page
 // @param req - the request
 // @param res - the response
@@ -86,6 +90,21 @@ app.get("/create-account", function (req, res) {
 app.get("/successpage", function (req, res) {
 	res.render('successpage');
 });
+
+// middleware: check-password-strength
+app.use("/create-account", (req, res, next) => {
+	console.log("middleware: checking password strength...");
+	console.log("Password:", passwordStrength(req.body.password).value);
+	console.log("Password:", passwordStrength(req.body.password).length);
+	console.log("Password:", passwordStrength(req.body.password).contains);
+
+	if (passwordStrength(req.body.password).value === "Strong") {
+		next();
+	} else {
+		res.send("Password Not Strong Enough! Please make sure to satisfy all password rules!");
+	}
+});
+
 
 app.post("/create-account", function (req, res) {
 	// Get the username and password data from the form

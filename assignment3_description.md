@@ -14,7 +14,7 @@
 
 - [x] #### 5. Use the node.js's [bcrypt](https://www.npmjs.com/package/bcrypt) package to securely store and verify passwords (in the SQL dabatabse). You can also find a very simple sample [file here](https://csufullerton.instructure.com/courses/3356207/files/234757175?wrap=1).
 
-- [ ] #### 6. Use node.js's [password strength checker package](https://www.npmjs.com/package/check-password-strength) to check whether the user's password is strong according to OWASP 10 requirements covered in class.
+- [x] #### 6. Use node.js's [password strength checker package](https://www.npmjs.com/package/check-password-strength) to check whether the user's password is strong according to OWASP 10 requirements covered in class.
 
 - [ ] #### 7. Add a self-signed HTTPs certificate.
 

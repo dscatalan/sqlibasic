@@ -9,10 +9,23 @@
     <form action="/create-account" method="POST">
       <label for="username">Username:</label><br>
       <input type="text" id="username" name="username"><br><br>
-      <label for="pass">Password (8 characters minimum):</label><br>
-      <input type="password" id="pass" name="password" minlength="8" required><br><br>
+      <label for="pass">Password (10 characters minimum):</label><br>
+      <input type="password" id="pass" name="password" minlength="10" required><br><br>
       <input type="submit" value="Register">
     </form>
+
+    <div>
+      <h2>Password Rules</h2>
+      <p>at least 10 characters</p>
+      <p>at least 1 uppercase character (A-Z)</p>
+      <p>at least 1 lowercase character (a-z)</p>
+      <p>at least 1 digit (0-9)</p>
+      <p>at least 1 special character (punctuation) </p>
+      
+      
+    </div>
+
+    <br><br>
 
     <a href="/">Already have an account? Login.</a>
 
