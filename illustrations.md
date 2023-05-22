@@ -10,7 +10,7 @@ current state of database (after initial creation):
 
 Follow Steps 15 to 18 from [notes](./notes.txt) to view `appusers` table.
 
-![image-20230522062655358](/home/student/sqlibasic/illustrations.assets/image-20230522062655358.png)
+![image-20230522062655358](illustrations.assets/image-20230522062655358.png)
 
 ```shell
 cd sqlibasic/
@@ -39,9 +39,9 @@ password: A2345678b+
 info: The sky is blue
 ```
 
-![image-20230522063138605](/home/student/sqlibasic/illustrations.assets/image-20230522063138605.png)
+![image-20230522063138605](illustrations.assets/image-20230522063138605.png)
 
-![image-20230522063155132](/home/student/sqlibasic/illustrations.assets/image-20230522063155132.png)
+![image-20230522063155132](illustrations.assets/image-20230522063155132.png)
 
 Account 2 Details (use Firefox client)
 
@@ -51,9 +51,9 @@ password: Bpd2*09w_P
 info: I need to go to the store.
 ```
 
-![image-20230522063247171](/home/student/sqlibasic/illustrations.assets/image-20230522063247171.png)
+![image-20230522063247171](illustrations.assets/image-20230522063247171.png)
 
-![image-20230522063200901](/home/student/sqlibasic/illustrations.assets/image-20230522063200901.png)
+![image-20230522063200901](illustrations.assets/image-20230522063200901.png)
 
 
 
@@ -61,7 +61,7 @@ info: I need to go to the store.
 SELECT * from appusers;
 ```
 
-![image-20230522063359762](/home/student/sqlibasic/illustrations.assets/image-20230522063359762.png)
+![image-20230522063359762](illustrations.assets/image-20230522063359762.png)
 
 
 
@@ -85,11 +85,11 @@ username: john
 password: Bpd2*09w_P
 ```
 
-![image-20230522065243480](/home/student/sqlibasic/illustrations.assets/image-20230522065243480.png)
+![image-20230522065243480](illustrations.assets/image-20230522065243480.png)
 
 Press `submit`
 
-![image-20230522065329055](/home/student/sqlibasic/illustrations.assets/image-20230522065329055.png)
+![image-20230522065329055](illustrations.assets/image-20230522065329055.png)
 
 current state of database, after multiple account login:
 
@@ -97,7 +97,7 @@ current state of database, after multiple account login:
 SELECT * from appusers;
 ```
 
-![image-20230522065407210](/home/student/sqlibasic/illustrations.assets/image-20230522065407210.png)
+![image-20230522065407210](illustrations.assets/image-20230522065407210.png)
 
 
 
@@ -105,7 +105,7 @@ SELECT * from appusers;
 
 Press `Logout` on both `daisy` and `john` accounts. Page should redirect after pressing `Logout`.
 
-![image-20230522065637497](/home/student/sqlibasic/illustrations.assets/image-20230522065637497.png)
+![image-20230522065637497](illustrations.assets/image-20230522065637497.png)
 
 current state of database, after multiple account Logout:
 
@@ -113,7 +113,7 @@ current state of database, after multiple account Logout:
 SELECT * from appusers;
 ```
 
-![image-20230522065657598](/home/student/sqlibasic/illustrations.assets/image-20230522065657598.png)
+![image-20230522065657598](illustrations.assets/image-20230522065657598.png)
 
 ## An explanation and screenshots explaining how the code meets each requirement.
 ### Step 1. Add a "session" attribute to the appusers table.
@@ -127,7 +127,7 @@ This is what `appusers` should look like:
 
 ### Step 7. Add a self-signed HTTPs certificate.
 
-![](/home/student/sqlibasic/illustrations.assets/Screenshot from 2023-05-22 03-51-03.png)
+![image-step-7](illustrations.assets/image-step-7.png)
 
 ```shell
 cd sqlibasic/
