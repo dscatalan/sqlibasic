@@ -1,22 +1,22 @@
 <html>
 <title> Sessions demo </title>
+
 <body bgcolor="lightyellow">
-<h1>Create An Account</h1>
-<br>
-
-<!-- <form action="/login" method="post">
-  User name:<br>
-  <input type="text" name="username" value="">
+  <h1>Create An Account</h1>
   <br>
-  Password:<br>
-  <input type="password" name="password" value="">
-  <br><br>
-  <input type="submit" value="Submit">
-</form> 
-</form>
 
-<a href="/signup">create account</a> -->
+  <div>
+    <form action="/create-account" method="POST">
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br><br>
+      <label for="pass">Password (8 characters minimum):</label><br>
+      <input type="password" id="pass" name="password" minlength="8" required><br><br>
+      <input type="submit" value="Register">
+    </form>
+
+    <a href="/">Already have an account? Login.</a>
 
 
 </body>
+
 </html>

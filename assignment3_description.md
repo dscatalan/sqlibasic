@@ -10,7 +10,7 @@
 
 - [x] #### 4. When the user logs out, the session ID is deleted from the user's record (or is replaced with some place holder value such as "not logged in".
 
-- [ ] #### 5. Add an option to allow users to register (i.e., add their user name and password)
+- [x] #### 5. Add an option to allow users to register (i.e., add their user name and password)
 
 - [ ] #### 5. Use the node.js's [bcrypt](https://www.npmjs.com/package/bcrypt) package to securely store and verify passwords (in the SQL dabatabse). You can also find a very simple sample [file here](https://csufullerton.instructure.com/courses/3356207/files/234757175?wrap=1).
 

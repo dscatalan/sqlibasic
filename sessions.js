@@ -79,6 +79,34 @@ app.get("/create-account", function (req, res) {
 
 });
 
+app.get("/successpage", function (req, res) {
+	res.render('successpage');
+});
+
+app.post("/create-account", function (req, res) {
+	// Get the username and password data from the form
+	let userName = req.body.username;
+	let password = req.body.password;
+	let initialInfo = ""
+	let initialSession = "not logged in"
+
+	// Construct the query
+	let query = "USE users; INSERT INTO appusers (username, password, info, session) VALUES ('" + userName + "', '" + password + "', '" + initialInfo + "', '" + initialSession + "') ";
+	console.log(query);
+
+	mysqlConn.query(query, function (err, qResult) {
+
+		if (err) throw err;
+
+		console.log(qResult[1]);
+
+		res.redirect('/successpage');
+
+	});
+
+
+});
+
 // The login page
 // @param req - the request
 // @param res - the response
