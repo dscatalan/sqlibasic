@@ -1,14 +1,12 @@
-# Illustrations...
+# Illustrations
 
-
-
-# Initial Step
+## Initial Step
 
 **First, We need to start the database and the app.**
 
-current state of database (after initial creation):
+current state of database (after [initial database setup](./notes.txt)):
 
-Follow Steps 15 to 18 from [notes](./notes.txt) to view `appusers` table.
+To view `appusers` table, follow Steps `15` to `18` from [notes](./notes.txt).
 
 ![image-20230522062655358](illustrations.assets/image-20230522062655358.png)
 
@@ -123,6 +121,9 @@ Please look at step 11 in [notes](/notes.txt)
 This is what `appusers` should look like:
 
 ![image-20230522071013859](illustrations.assets/image-20230522071013859.png)
+
+### Step 2. When the user logs in, store the session ID in the "session" attribute of the user's record. Please do not make any other changes to the database.
+
 
 
 ### Step 7. Add a self-signed HTTPs certificate.

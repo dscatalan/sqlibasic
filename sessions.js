@@ -10,7 +10,7 @@ const sessions = require('client-sessions');
 const bodyParser = require("body-parser");
 
 // The mysql library
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // Import uuid
 const { v4: uuidv4 } = require('uuid');
