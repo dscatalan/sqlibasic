@@ -161,9 +161,12 @@ app.post('/login', function (req, res) {
 	let userName = req.body.username;
 	let password = req.body.password;
 
+	const hash = bcrypt.hashSync(password, saltRounds);
+	let passHashComparison = bcrypt.compareSync(password, hash);
+	console.log("passHashComparison: ", passHashComparison);
 
 	// Construct the query
-	let query = "USE users; SELECT username,password from appusers where username='" + userName + "' AND password='" + password + "'";
+	let query = "USE users; SELECT username from appusers where username='" + userName + "' ";
 	console.log(query);
 
 
@@ -180,7 +183,7 @@ app.post('/login', function (req, res) {
 		// Go through the results of the second query
 		for (let account of qResult[1]) {
 
-			if (account['username'] == userName && account['password'] == password) {
+			if (account['username'] == userName && passHashComparison) {
 				console.log("Match!");
 
 				// We have a match!
